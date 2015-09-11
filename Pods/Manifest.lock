@@ -1,0 +1,20 @@
+PODS:
+  - GesturePacker (0.1.0)
+
+DEPENDENCIES:
+  - GesturePacker (from `https://github.com/ikemai/GesturePacker.git`, branch `swift-2.0`)
+
+EXTERNAL SOURCES:
+  GesturePacker:
+    :branch: swift-2.0
+    :git: https://github.com/ikemai/GesturePacker.git
+
+CHECKOUT OPTIONS:
+  GesturePacker:
+    :commit: 5573507165021951dae20be3b55334b357d84379
+    :git: https://github.com/ikemai/GesturePacker.git
+
+SPEC CHECKSUMS:
+  GesturePacker: ab8ac5909c469403396d53a906fce9c9a63c090d
+
+COCOAPODS: 0.38.2
