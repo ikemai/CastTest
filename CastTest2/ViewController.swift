@@ -55,20 +55,11 @@ class ViewController: UIViewController, GCKMediaControlChannelDelegate {
         apeerAlert("Error", message: error.description)
     }
     
-    func updateStatsFromDevice() {
-        print("updateStatsFromDevice()")
-    }
-    
     private func apeerAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    
-    
-    //Cast video
-    @IBAction func castVideo(sender:AnyObject) {
-        print("Cast Video")}
 }
 
 //
@@ -77,12 +68,10 @@ class ViewController: UIViewController, GCKMediaControlChannelDelegate {
 extension ViewController: GCKDeviceScannerListener {
     
     func deviceDidComeOnline(device: GCKDevice) {
-        print("Device found: \(device.friendlyName)")
         updateButtonStates()
     }
     
     func deviceDidGoOffline(device: GCKDevice) {
-        print("Device went away: \(device.friendlyName)")
         updateButtonStates()
     }
     
@@ -123,6 +112,7 @@ extension ViewController {
         let buttonImage = UIImage(named: "ic_cast_black_24dp.png")
         chromecastButton.setImage(buttonImage, forState: .Normal)
     }
+    
     private func hideCastButton() {
         chromecastButton.setImage(nil, forState: .Normal)
     }
@@ -185,6 +175,12 @@ extension ViewController: UIActionSheetDelegate {
         sheet.cancelButtonIndex = buttonIndex
         
         sheet.showInView(view)
+    }
+    
+    private func updateStatsFromDevice() {
+        if deviceManager?.connectionState == GCKConnectionState.Connected && mediaControlChannel?.mediaStatus != nil {
+            mediaInformation = mediaControlChannel?.mediaStatus.mediaInformation
+        }
     }
 }
 
